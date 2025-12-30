@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Arithmetic Operations in JavaScript</title>
+  <script>
+    function performOperations() {
+      let num1 = parseFloat(document.getElementById("num1").value);
+      let num2 = parseFloat(document.getElementById("num2").value);
+
+      if (isNaN(num1) || isNaN(num2)) {
+        alert("Please enter valid numbers.");
+        return;
+      }
+
+      document.getElementById("resultAdd").innerText = "Addition: " + (num1 + num2);
+      document.getElementById("resultSub").innerText = "Subtraction: " + (num1 - num2);
+      document.getElementById("resultMul").innerText = "Multiplication: " + (num1 * num2);
+      if (num2 !== 0) {
+        document.getElementById("resultDiv").innerText = "Division: " + (num1 / num2);
+        document.getElementById("resultMod").innerText = "Modulo: " + (num1 % num2);
+      } else {
+        document.getElementById("resultDiv").innerText = "Division: Cannot divide by zero";
+        document.getElementById("resultMod").innerText = "Modulo: Cannot modulo by zero";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Arithmetic Operations</h2>
+  <label>Number 1: <input type="text" id="num1"></label><br><br>
+  <label>Number 2: <input type="text" id="num2"></label><br><br>
+  <button onclick="performOperations()">Calculate</button>
+
+  <p id="resultAdd"></p>
+  <p id="resultSub"></p>
+  <p id="resultMul"></p>
+  <p id="resultDiv"></p>
+  <p id="resultMod"></p>
+</body>
+</html>

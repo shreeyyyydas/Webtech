@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error { color: red; font-size: 0.9em; }
+    input.success { border-color: green; }
+    input.error { border-color: red; }
+  </style>
+</head>
+<body>
+
+<form id="form" novalidate>
+  <label>Name:</label><br>
+  <input id="name" type="text"><div id="nameErr" class="error"></div><br>
+  
+  <label>Email:</label><br>
+  <input id="email" type="email"><div id="emailErr" class="error"></div><br>
+  
+  <label>Password:</label><br>
+  <input id="pass" type="password"><div id="passErr" class="error"></div><br>
+  
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+const form = document.getElementById('form');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  clearErrors();
+  let valid = true;
+
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const pass = form.pass.value.trim();
+
+  if (!name || /\d/.test(name)) {
+    showError('nameErr', 'Valid name required');
+    form.name.classList.add('error');
+    valid = false;
+  } else form.name.classList.add('success');
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    showError('emailErr', 'Valid email required');
+    form.email.classList.add('error');
+    valid = false;
+  } else form.email.classList.add('success');
+
+  if (!pass || pass.length < 6) {
+    showError('passErr', 'Password min 6 chars');
+    form.pass.classList.add('error');
+    valid = false;
+  } else form.pass.classList.add('success');
+
+  if (valid) alert('Form submitted!');
+});
+
+function showError(id, msg) {
+  document.getElementById(id).textContent = msg;
+}
+
+function clearErrors() {
+  ['nameErr','emailErr','passErr'].forEach(id => {
+    document.getElementById(id).textContent = '';
+  });
+  ['name','email','pass'].forEach(id => {
+    form[id].classList.remove('error','success');
+  });
+}
+</script>
+
+</body>
+</html>

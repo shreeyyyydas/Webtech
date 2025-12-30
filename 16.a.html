@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Indexed Array Manipulation</h2>
+    <?php
+    // Creating an indexed array
+    $fruits = array("Apple", "Banana", "Orange", "Grape");
+
+    // Adding a new fruit
+    $fruits[] = "Mango";
+
+    // Display first fruit
+    echo "<p>First fruit: <b>" . $fruits[0] . "</b></p>";
+
+    // Display all fruits
+    echo "<p>All fruits:</p><ul>";
+    for ($i = 0; $i < count($fruits); $i++) {
+        echo "<li>" . $fruits[$i] . "</li>";
+    }
+    echo "</ul>";
+    ?>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #emailError {
+      color: red;
+      font-size: 0.9em;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+    #message {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Register</h2>
+  <form id="registrationForm" novalidate>
+    <label>Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <span id="emailError"></span><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <input type="submit" value="Register">
+  </form>
+
+  <div id="message"></div>
+
+  <script>
+  $(document).ready(function(){
+    $("#registrationForm").submit(function(event){
+      event.preventDefault();
+
+      $("#message").html("");
+      $("#emailError").text("");
+
+      var email = $("#email").val().trim();
+      var name = $("#name").val().trim();
+      var password = $("#password").val();
+
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+        $("#emailError").text("Invalid email address.");
+        $("#email").focus();
+        return;
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "process_registration.php",
+        data: { name: name, email: email, password: password },
+        dataType: "json",
+        success: function(response) {
+          if(response.success) {
+            $("#message").html("<span style='color:green'>" + response.message + "</span>");
+            $("#registrationForm")[0].reset();
+          } else {
+            $("#message").html("<span style='color:red'>" + response.message + "</span>");
+          }
+        },
+        error: function(xhr, status, error){
+          $("#message").html("<span style='color:red'>AJAX error: " + error + "</span>");
+          console.log("AJAX error details:", status, xhr.responseText);
+        }
+      });
+    });
+  });
+  </script>
+</body>
+</html>

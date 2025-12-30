@@ -1,0 +1,58 @@
+td:empty{
+border:none;
+}
+.nep{
+ background-color:red;
+ color: white;
+}
+.pen{
+ background-color:black;
+ color: white;
+}
+.epn{
+ background-color:brown;
+ color: white;
+}
+.pne{
+ background-color:magenta;
+ color: white;
+}
+.enp{
+ background-color:blue;
+ color: white;
+}
+.npe{
+ background-color:grey;
+ color: white;
+}
+
+.ben{
+ background-color:goldenrod;
+ color: white;
+}
+.cept{
+background-color:green;
+color:white;
+}
+.rept{
+background-color:purple;
+color:white;
+}
+.eel{
+background-color:lightblue;
+color:white;
+}
+.ived{
+background-color:beige;
+}
+.table1, .table2 {
+  display: inline-block;   
+  vertical-align: top;     
+  margin-right: 100px;
+  cellpadding:15px;
+}
+
+
+
+
+

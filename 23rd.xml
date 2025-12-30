@@ -1,0 +1,37 @@
+<?php
+// Create a new XML document
+$xml = new DOMDocument("1.0", "UTF-8");
+$xml->formatOutput = true;
+
+// Create root element <library>
+$library = $xml->createElement("library");
+$xml->appendChild($library);
+
+// Array of books to add
+$books = [
+    ["title" => "Learning PHP", "author" => "John Smith", "year" => "2020"],
+    ["title" => "Mastering XML", "author" => "Jane Doe", "year" => "2018"],
+    ["title" => "Java Programming", "author" => "Alex Johnson", "year" => "2021"],
+];
+
+// Add each book element
+foreach ($books as $book) {
+    $bookElement = $xml->createElement("book");
+
+    $title = $xml->createElement("title", htmlspecialchars($book["title"]));
+    $bookElement->appendChild($title);
+
+    $author = $xml->createElement("author", htmlspecialchars($book["author"]));
+    $bookElement->appendChild($author);
+
+    $year = $xml->createElement("year", htmlspecialchars($book["year"]));
+    $bookElement->appendChild($year);
+
+    $library->appendChild($bookElement);
+}
+
+// Save XML to file
+$xml->save("books.xml");
+
+echo "XML file 'books.xml' has been created successfully.";
+?>

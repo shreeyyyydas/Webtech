@@ -1,0 +1,25 @@
+<?php
+// Setting a cookie named "user" with value "John Doe"
+// The cookie will expire in 30 days (86400 seconds * 30)
+setcookie("user", "John Doe", time() + (86400 * 30), "/");
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set and Read Cookie Example</title>
+</head>
+<body>
+
+<?php
+// Check if the cookie "user" is set
+if(!isset($_COOKIE["user"])) {
+    echo "Cookie named 'user' is not set!";
+} else {
+    echo "Cookie 'user' is set!<br>";
+    echo "Value is: " . $_COOKIE["user"];
+}
+?>
+
+</body>
+</html>

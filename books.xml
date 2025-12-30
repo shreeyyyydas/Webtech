@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book>
+    <title>Learning PHP</title>
+    <author>John Smith</author>
+    <year>2020</year>
+  </book>
+  <book>
+    <title>Mastering XML</title>
+    <author>Jane Doe</author>
+    <year>2018</year>
+  </book>
+  <book>
+    <title>Java Programming</title>
+    <author>Alex Johnson</author>
+    <year>2021</year>
+  </book>
+</library>

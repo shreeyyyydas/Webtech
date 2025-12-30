@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form Validation</title>
+  <style>
+    .error { color: red; }
+  </style>
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const course = document.getElementById("course").value;
+      const agree = document.getElementById("agree").checked;
+
+      let isValid = true;
+
+      // Clear previous error messages
+      document.getElementById("name-error").textContent = "";
+      document.getElementById("email-error").textContent = "";
+      document.getElementById("password-error").textContent = "";
+      document.getElementById("course-error").textContent = "";
+      document.getElementById("agree-error").textContent = "";
+
+      // Validate name
+      if (name === "" || /\d/.test(name)) {
+        document.getElementById("name-error").textContent = "Enter your name";
+        isValid = false;
+      }
+
+      // Validate email
+      if (email === "" || !email.includes("@") || !email.includes(".")) {
+        document.getElementById("email-error").textContent = "Enter a valid email address.";
+        isValid = false;
+      }
+
+      // Validate password
+      if (password === "" || password.length < 6) {
+        document.getElementById("password-error").textContent = "Field cannot be empty ";
+        isValid = false;
+      }
+
+      // Validate course selection
+      if (course === "") {
+        document.getElementById("course-error").textContent = "Please select a course.";
+        isValid = false;
+      }
+
+      // Validate agreement checkbox
+      if (!agree) {
+        document.getElementById("agree-error").textContent = "You must agree to the terms.";
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert("Form submitted successfully!");
+        return true;
+      } else {
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Registration Form</h2>
+  <form onsubmit="return validateForm()">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <span id="name-error" class="error"></span><br>
+
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <span id="email-error" class="error"></span><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+    <span id="password-error" class="error"></span><br>
+
+    <label for="course">Select Course:</label><br>
+    <select id="course" name="course">
+      <option value="">--Select--</option>
+      <option value="cs">Computer Science</option>
+      <option value="it">Information Technology</option>
+      <option value="ece">Electronics</option>
+    </select><br>
+    <span id="course-error" class="error"></span><br>
+
+    <input type="checkbox" id="agree" name="agree">
+    <label for="agree">I agree to the terms and conditions</label><br>
+    <span id="agree-error" class="error"></span><br>
+
+    <input type="submit" value="Register">
+  </form>
+</body>
+</html>
